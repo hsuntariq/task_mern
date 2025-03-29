@@ -33,7 +33,6 @@ export default function ClassicTemplate({ formData, products }) {
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      {/* Download Button */}
       <div className="mb-4 flex justify-end">
         <button
           onClick={downloadPDF}
@@ -43,7 +42,6 @@ export default function ClassicTemplate({ formData, products }) {
         </button>
       </div>
 
-      {/* Invoice Content */}
       <div
         ref={invoiceRef}
         className="bg-[#fff] shadow-lg rounded-lg border border-[#d1d5dc] p-6"

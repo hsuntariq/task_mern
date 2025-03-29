@@ -38,7 +38,7 @@ export default function ModernTemplate({ formData, products }) {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg">
       <div className="mb-4 flex justify-end">
         <button
           onClick={downloadPDF}
@@ -48,7 +48,7 @@ export default function ModernTemplate({ formData, products }) {
         </button>
       </div>
 
-      <div ref={invoiceRef} className="p-6 bg-white">
+      <div ref={invoiceRef} className="p-6  shadow-lg bg-white">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold">INVOICE</h1>
           <div className="w-20 h-20 bg-[#ff6600] flex items-center justify-center rounded-full text-white font-semibold">
