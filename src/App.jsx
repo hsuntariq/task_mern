@@ -9,10 +9,14 @@ const App = () => {
     invoiceNumber: "",
     date: "",
     clientName: "",
+    clientPhone: "",
+    clientEmail: "",
     amount: "",
     description: "",
     template: "default",
   });
+
+  const [products, setProducts] = useState([]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,11 +24,30 @@ const App = () => {
 
   const [disabled, setDisabled] = useState(true);
 
+  const add = (item) => {
+    setProducts((prevValues) => {
+      // find the product
+      let existingProduct = prevValues.find((item2) => {
+        return item2.id == item.id;
+      });
+
+      if (existingProduct) {
+        return prevValues.map((prod, index) =>
+          prod.id == item.id ? { ...prod, quantity: prod.quantity + 1 } : prod
+        );
+      } else {
+        return [...prevValues, { ...item, quantity: 1 }];
+      }
+    });
+  };
+
   useEffect(() => {
     if (
       !formData.invoiceNumber ||
       !formData.date ||
       !formData.clientName ||
+      !formData.clientEmail ||
+      !formData.clientPhone ||
       !formData.amount ||
       !formData.description
     ) {
@@ -50,7 +73,6 @@ const App = () => {
           return (
             <>
               <div
-                onClick={() => setActive(index)}
                 key={index}
                 className={`${
                   index == active && "bg-green-500 text-white"
@@ -68,6 +90,8 @@ const App = () => {
 
       {active == 0 && (
         <InvoiceForm
+          active={active}
+          setActive={setActive}
           formData={formData}
           setFormData={setFormData}
           handleChange={handleChange}
@@ -77,6 +101,11 @@ const App = () => {
       )}
       {active == 1 && (
         <ItemForm
+          active={active}
+          setActive={setActive}
+          products={products}
+          setProducts={setProducts}
+          add={add}
           formData={formData}
           setFormData={setFormData}
           handleChange={handleChange}
@@ -86,6 +115,9 @@ const App = () => {
       )}
       {active == 2 && (
         <Invoice
+          products={products}
+          active={active}
+          setActive={setActive}
           formData={formData}
           setFormData={setFormData}
           handleChange={handleChange}

@@ -6,6 +6,8 @@ export default function InvoiceForm({
   handleChange,
   handleSubmit,
   disabled,
+  setActive,
+  active,
 }) {
   return (
     <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-2xl border border-gray-300 focus:border-green-600 outline-0 border border-gray-300 focus:border-green-600 outline-0-gray-200">
@@ -52,6 +54,32 @@ export default function InvoiceForm({
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">
+            Client Email
+          </label>
+          <input
+            type="text"
+            name="clientEmail"
+            value={formData.clientEmail}
+            onChange={handleChange}
+            className="w-full p-2 mt-1 border border-gray-300 focus:border-green-600 outline-0 rounded-lg focus:ring focus:ring-blue-200"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Client Phone
+          </label>
+          <input
+            type="text"
+            name="clientPhone"
+            value={formData.clientPhone}
+            onChange={handleChange}
+            className="w-full p-2 mt-1 border border-gray-300 focus:border-green-600 outline-0 rounded-lg focus:ring focus:ring-blue-200"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
             Amount
           </label>
           <input
@@ -75,19 +103,16 @@ export default function InvoiceForm({
             required
           ></textarea>
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Select Template
-          </label>
-        </div>
+        <div></div>
         <button
+          onClick={() => setActive(active + 1)}
           disabled={disabled}
           type="submit"
           className={`w-full ${
             disabled ? "bg-gray-600 " : "bg-blue-600 hover:bg-blue-700"
           }  text-white py-2 rounded-lg  transition  `}
         >
-          Generate Invoice
+          Proceed
         </button>
       </form>
     </div>

@@ -2,7 +2,13 @@ import React from "react";
 import ClassicTemplate from "./templates/ClassicTemplate";
 import ModernTemplate from "./templates/ModernTemplate";
 
-const Invoice = ({ formData, setFormData, handleChange, handleSubmit }) => {
+const Invoice = ({
+  formData,
+  setFormData,
+  handleChange,
+  handleSubmit,
+  products,
+}) => {
   const templates = [
     { id: "default", name: "Default Template" },
     { id: "modern", name: "Modern Template" },
@@ -12,6 +18,9 @@ const Invoice = ({ formData, setFormData, handleChange, handleSubmit }) => {
   return (
     <>
       <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-2xl border border-gray-300 focus:border-green-600 outline-0 border border-gray-300 focus:border-green-600 outline-0-gray-200">
+        <label className="block text-sm font-medium text-gray-700">
+          Select Template
+        </label>
         <select
           name="template"
           value={formData.template}
@@ -26,8 +35,12 @@ const Invoice = ({ formData, setFormData, handleChange, handleSubmit }) => {
         </select>
       </div>
       <div className="my-5">
-        {formData.template == "classic" && <ClassicTemplate />}
-        {formData.template == "modern" && <ModernTemplate />}
+        {formData.template == "classic" && (
+          <ClassicTemplate formData={formData} products={products} />
+        )}
+        {formData.template == "modern" && (
+          <ModernTemplate formData={formData} products={products} />
+        )}
       </div>
     </>
   );
